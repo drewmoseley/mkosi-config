@@ -5,3 +5,4 @@ fedora-minimal/fedora-minimal.efi
 fedora-minimal/fedora-minimal.initrd
 fedora-minimal/fedora-minimal.raw
 fedora-minimal/fedora-minimal.vmlinuz
+*/mkosi.cache
