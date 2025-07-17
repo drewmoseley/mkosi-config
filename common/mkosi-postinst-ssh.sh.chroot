@@ -3,13 +3,7 @@
 set -euo pipefail
 
 USERNAME=dmoseley
-PASSWORD_HASH='$6$H.kSZVGADRhs3PWV$jSZ5nV.Yp.ih9e2gkD3QGrTJf1gFOobfUhIeucl3R4.QBi24Q7bi5P.5/wX9YvBTuQYHTlPKR/3dZ0RGQqvaD/'
 PUBKEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKV++skvTfFsPwzXM3abi/HAWU5ppabTunLGBB+lElwn"
-
-# Create user with preset hash
-useradd --create-home --user-group $USERNAME --password "${PASSWORD_HASH}"
-usermod -aG wheel "$USERNAME"
-echo "${USERNAME}:${PASSWORD_HASH}" | chpasswd -e
 
 # Setup SSH directory
 install -d -m 0700 /home/$USERNAME/.ssh
