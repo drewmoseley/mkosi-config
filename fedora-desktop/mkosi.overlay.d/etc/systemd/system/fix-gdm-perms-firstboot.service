@@ -1,0 +1,12 @@
+[Unit]
+Description=Fix gdm directory ownership
+ConditionFirstBoot=yes
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/firstboot.d/fix-gdm-perms.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
