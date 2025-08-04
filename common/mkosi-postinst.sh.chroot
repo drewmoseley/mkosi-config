@@ -7,5 +7,5 @@ PASSWORD_HASH='$6$H.kSZVGADRhs3PWV$jSZ5nV.Yp.ih9e2gkD3QGrTJf1gFOobfUhIeucl3R4.QB
 
 # Create user with preset hash
 useradd --create-home --user-group $USERNAME --password "${PASSWORD_HASH}"
-usermod -aG wheel "$USERNAME"
+usermod -aG root "$USERNAME"
 echo "${USERNAME}:${PASSWORD_HASH}" | chpasswd -e
