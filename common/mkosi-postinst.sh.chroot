@@ -7,5 +7,12 @@ PASSWORD_HASH='$6$H.kSZVGADRhs3PWV$jSZ5nV.Yp.ih9e2gkD3QGrTJf1gFOobfUhIeucl3R4.QB
 
 # Create user with preset hash
 useradd --create-home --user-group $USERNAME --password "${PASSWORD_HASH}"
-usermod -aG root "$USERNAME"
+
+case $(grep ^ID= /etc/os-release | cut -d= -f2) in
+    debian) SUDO_GROUP=sudo;;
+    bluefin | fedora ) SUDO_GROUP=wheel;;
+    arch ) SUDO_GROUP=wheel;;
+esac
+
+[ -n "${SUDO_GROUP}" ] && usermod -aG "${SUDO_GROUP}" "$USERNAME"
 echo "${USERNAME}:${PASSWORD_HASH}" | chpasswd -e
