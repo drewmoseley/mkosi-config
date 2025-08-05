@@ -5,10 +5,14 @@ set -euo pipefail
 USERNAME=dmoseley
 PUBKEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKV++skvTfFsPwzXM3abi/HAWU5ppabTunLGBB+lElwn"
 
-# Setup SSH directory
+case $(grep ^ID= /etc/os-release | cut -d= -f2) in
+    debian) SSH_SERVICE=ssh.service;;
+    bluefin | fedora ) SSH_SERVICE=sshd.service;;
+    arch ) SSH_SERVICE=sshd.service;;
+esac
+
 install -d -m 0700 /home/$USERNAME/.ssh
 echo "$PUBKEY" > /home/$USERNAME/.ssh/authorized_keys
 chmod 600 /home/$USERNAME/.ssh/authorized_keys
 
-# Enable sshd
-systemctl --root=/ -q enable sshd.service
+[ -n "${SSH_SERVICE}" ] && systemctl --root=/ -q enable ${SSH_SERVICE}
