@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-set -euo pipefail
-
-ufw enable
-ufw allow ssh
