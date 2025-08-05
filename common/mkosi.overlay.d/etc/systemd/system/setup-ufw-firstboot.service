@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup ufw on first boot
+ConditionFirstBoot=yes
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/firstboot.d/setup-ufw.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

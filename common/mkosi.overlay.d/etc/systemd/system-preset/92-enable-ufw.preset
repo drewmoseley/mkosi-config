@@ -1,1 +1,1 @@
-enable ufw.service
+enable setup-ufw-firstboot.service
